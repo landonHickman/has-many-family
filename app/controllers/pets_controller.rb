@@ -8,9 +8,9 @@ before_action :set_pet, only: [:show, :update, :destroy]
     render json: {person: @person, pet: @person.pets}
   end
 
-  def all
-    render json: Pet.all
-  end
+  # def all
+  #   render json: Pet.all
+  # end
 
   def show
     render json: @pet
