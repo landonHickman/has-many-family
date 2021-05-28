@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Family from './Family'
+import FamilyForm from './FamilyForm'
 
 const Main = () => {
   const [families, setFamilies] = useState([])
@@ -17,6 +18,11 @@ const Main = () => {
     setFamilies(res.data)
   }
 
+  const addFamilyName = (familyName) => {
+    let createName = [familyName, ...families]
+    setFamilies(createName)
+  } 
+
   const renderFamilies = () => {
     if(families.length == 0){
       return <p>No Families!</p>
@@ -32,6 +38,7 @@ const Main = () => {
   return(
     <div>
       <h1>Main</h1>
+      <FamilyForm addFamilyName={addFamilyName}/>
       {renderFamilies()}
     </div>
   )
