@@ -20,4 +20,12 @@ Rails.application.routes.draw do
   delete '/families/:families_id/people/:id', to: 'people#destroy'
 
   get '/people', to:'people#all'
+
+  get '/families/:families_id/people/:person_id/pets', to:'pets#index'
+  post '/families/:families_id/people/:person_id/pets', to:'pets#create'
+
+  get '/families/:families_id/people/:person_id/pets/:id', to:'pets#show'
+  put '/families/:families_id/people/:person_id/pets/:id', to:'pets#update'
+  patch '/families/:families_id/people/:person_id/pets/:id', to:'pets#update'
+  delete '/families/:families_id/people/:person_id/pets/:id', to:'pets#destroy'
 end
