@@ -55,7 +55,7 @@ const Main = () => {
   return(
     <div>
       <h1>Families</h1>
-      <button onClick={()=> setShowForm(!showForm)}>Add Family</button>
+      <button onClick={()=> setShowForm(!showForm)}>Add Family Form</button>
       {showForm && <FamilyForm addFamilyName={addFamilyName}/>}
       {renderFamilies()}
     </div>

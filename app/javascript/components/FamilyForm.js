@@ -29,7 +29,7 @@ const FamilyForm = (props) => {
       <form onSubmit={handleSubmit}>
         <p>{id ? 'Edit' : 'Add'} Last Name</p>
         <input value={name} onChange={(e)=>setName(e.target.value)}/>
-        <button>{id ? 'Edit' : 'Add' }</button>
+        <button>{id ? 'Update' : 'Add' }</button>
       </form>
     </div>
   )
