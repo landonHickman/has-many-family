@@ -22,9 +22,14 @@ const People = (props) => {
     setPerson([p, ...person])
   }
   
+  const updatePerson = (updateP) => {
+    let updatedPerson = person.map(p => p.id === updateP.id ? updateP : p)
+    setPerson(updatedPerson)
+  }
+
   const renderPeople = () => {
     return person.map (p => {
-      return <Person key={p.id} {...p} addPerson={addPerson} familyId={familyId}/>
+      return <Person key={p.id} {...p} familyId={familyId} updatePerson={updatePerson}/>
     })
   }
 

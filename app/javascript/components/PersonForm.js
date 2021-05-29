@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, {useState} from 'react'
 
 const PersonForm = (props) => {
-  const {familyId, personId, addPerson} = props
+  const {familyId, personId, addPerson, updatePerson} = props
   const [name, setName] = useState(props.name ? props.name : '')
 
   const handleSubmit = async (e) => {
@@ -10,10 +10,10 @@ const PersonForm = (props) => {
     try {
       if(personId){
         let res = await axios.put(`/families/${familyId}/people/${personId}`, {name})
-        
+        // console.log('look here', res.data)
+        updatePerson(res.data)
       }else {
         let res = await axios.post(`/families/${familyId}/people`, {name})
-        console.log('look here', res.data)
         addPerson(res.data)
       }
     } catch(err) {
@@ -22,8 +22,6 @@ const PersonForm = (props) => {
     }
     setName('')
   }
-
-
 
   return (
     <div>
