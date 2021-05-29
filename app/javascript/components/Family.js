@@ -1,17 +1,21 @@
 import React, {useState} from 'react'
 import FamilyForm from './FamilyForm'
+import People from './People'
+
 
 const Family = (props) => {
-  const {id, name, deleteFamily} = props
+  const {id, name, deleteFamily, editFamilyName} = props
   const [showForm, setShowForm] = useState(false)
+  const [showPeople, setShowPeople] = useState(false)
 
   return (
     <div>
-      <h3>{id}</h3>
-      <h2>{name} Family</h2>
+      <h1>{name} Family</h1>
+      <button onClick={()=> setShowPeople(!showPeople)}>Show People</button>
       <button onClick={()=> setShowForm(!showForm)}>Edit</button>
       <button onClick={()=> deleteFamily(id)}>Delete</button>
-      {showForm && <FamilyForm id={id}/>}
+      {showForm && <FamilyForm id={id} editFamilyName={editFamilyName}/>}
+      {showPeople && <People familyId={id}/>}
     </div>
   )
 }

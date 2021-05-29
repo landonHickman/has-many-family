@@ -13,9 +13,8 @@ const Main = () => {
 
   const getFamilies = async () => {
     let res = await axios.get('/families')
-    console.log(res)
-    console.log(res.data)
-
+    // console.log(res)
+    // console.log(res.data)
     setFamilies(res.data)
   }
 
@@ -23,6 +22,17 @@ const Main = () => {
     let createName = [familyName, ...families]
     setFamilies(createName)
   } 
+
+  const editFamilyName = (familyName) => {
+    let updateName = families.map (f => {
+      if(f.id === familyName.id){
+        return familyName
+      } else {
+        return f
+      }
+    })
+    setFamilies(updateName)
+  }
 
   const deleteFamily = async (id) => {
     let res = await axios.delete(`/families/${id}`)
@@ -36,7 +46,7 @@ const Main = () => {
     }
     return families.map (f=> {
       return (
-        <Family key={f.id} {...f} deleteFamily={deleteFamily}/>
+        <Family key={f.id} {...f} deleteFamily={deleteFamily} editFamilyName={editFamilyName}/>
       )
     })
    

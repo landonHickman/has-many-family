@@ -2,15 +2,15 @@ import axios from 'axios'
 import React, {useState} from 'react'
 
 const FamilyForm = (props) => {
-  const {id, addFamilyName} = props
+  const {id, addFamilyName, editFamilyName} = props
   const [name, setName] = useState(props.name ? props.name : '')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       if(id){
-        let res = await axios.put(`/families/${id}`, name)
-
+        let res = await axios.put(`/families/${id}`, {name})
+        editFamilyName(res.data)
       }else {
         let res = await axios.post('/families', {name})
         addFamilyName(res.data)
