@@ -27,9 +27,14 @@ const People = (props) => {
     setPerson(updatedPerson)
   }
 
+  const deletePerson = (id) => {
+    let del = person.filter(p => p.id != id)
+    setPerson(del)
+  }
+
   const renderPeople = () => {
     return person.map (p => {
-      return <Person key={p.id} {...p} familyId={familyId} updatePerson={updatePerson}/>
+      return <Person key={p.id} {...p} familyId={familyId} updatePerson={updatePerson} deletePerson={deletePerson}/>
     })
   }
 
