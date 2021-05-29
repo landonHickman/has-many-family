@@ -5,6 +5,7 @@ import FamilyForm from './FamilyForm'
 
 const Main = () => {
   const [families, setFamilies] = useState([])
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(()=>{
     getFamilies()
@@ -23,13 +24,19 @@ const Main = () => {
     setFamilies(createName)
   } 
 
+  const deleteFamily = async (id) => {
+    let res = await axios.delete(`/families/${id}`)
+    let delFamily = families.filter (f => f.id !== res.data.id)
+    setFamilies(delFamily)
+  }
+
   const renderFamilies = () => {
     if(families.length == 0){
       return <p>No Families!</p>
     }
     return families.map (f=> {
       return (
-        <Family key={f.id} {...f} />
+        <Family key={f.id} {...f} deleteFamily={deleteFamily}/>
       )
     })
    
@@ -37,8 +44,9 @@ const Main = () => {
 
   return(
     <div>
-      <h1>Main</h1>
-      <FamilyForm addFamilyName={addFamilyName}/>
+      <h1>Families</h1>
+      <button onClick={()=> setShowForm(!showForm)}>Add Family</button>
+      {showForm && <FamilyForm addFamilyName={addFamilyName}/>}
       {renderFamilies()}
     </div>
   )
