@@ -20,9 +20,14 @@ const Pets = (props) => {
     setPet([p, ...pet])
   }
 
+  const editPet = (editpetid) => {
+    let updatePet = pet.map (p => p.id === editpetid.id ? editpetid : p) 
+    setPet(updatePet)
+  }
+
   const renderPets = () => {
     return pet.map (p => {
-      return <Pet key={p.id} {...p}/>
+      return <Pet key={p.id} {...p} familyId={familyId} personId={personId} editPet={editPet}/>
     })
   }
 
