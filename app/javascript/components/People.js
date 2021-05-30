@@ -27,8 +27,10 @@ const People = (props) => {
     setPerson(updatedPerson)
   }
 
-  const deletePerson = (id) => {
-    let del = person.filter(p => p.id != id)
+  const deletePerson = async (id) => {
+    let res = await axios.delete(`/families/${familyId}/people/${id}`)
+    let del = person.filter(p => p.id != res.data.id)
+    console.log(del)
     setPerson(del)
   }
 
