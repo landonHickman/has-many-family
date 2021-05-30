@@ -9,7 +9,6 @@ const Person = (props) => {
 
   return (
     <div>
-      <h3>{id}</h3>
       <h2>{name}</h2>
       <button onClick={()=>setShowPets(!showPets)}>Show Pets</button>
       <button onClick={()=>setShowForm(!showForm)}>Edit Form</button>

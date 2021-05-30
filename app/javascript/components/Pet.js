@@ -1,15 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PetForm from './PetForm'
 
 const Pets = (props) => {
   const {id, name, familyId, personId, editPet, deletePet} = props
+  const [showForm, setShowForm] = useState(false)
 
   return (
     <div>
-      <h2>{id}</h2>
+      
       <h2>{name}</h2>
-      <PetForm petId={id} familyId={familyId} personId={personId} editPet={editPet} name={name}/>
+      <button onClick={()=>setShowForm(!showForm)}>Edit Pet</button>
       <button onClick={()=>deletePet(id)}>Delete</button>
+      {showForm && <PetForm petId={id} familyId={familyId} personId={personId} editPet={editPet} name={name}/>}
     </div>
   )
 }

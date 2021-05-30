@@ -6,6 +6,7 @@ import PetForm from './PetForm'
 const Pets = (props) => {
   const {familyId, personId, personName} = props 
   const[pet, setPet] = useState([])
+  const [showForm, setShowForm] = useState(false)
   
   useEffect(()=>{
     getPets()
@@ -40,7 +41,8 @@ const Pets = (props) => {
   return (
     <div>
       <h2>{personName}'s Pets</h2>
-      {<PetForm familyId={familyId} personId={personId} addPet={addPet}/>}
+      <button onClick={()=>setShowForm(!showForm)}>Add Pet</button>
+      {showForm && <PetForm familyId={familyId} personId={personId} addPet={addPet}/>}
       {renderPets()}
       <h1>---------------------------</h1>
     </div>
