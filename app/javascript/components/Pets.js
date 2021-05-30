@@ -25,9 +25,15 @@ const Pets = (props) => {
     setPet(updatePet)
   }
 
+  const deletePet = async (id) => {
+    let res = await axios.delete(`/families/${familyId}/people/${personId}/pets/${id}`)
+    let del = pet.filter (p => p.id != res.data.id)
+    setPet(del)
+  }
+
   const renderPets = () => {
     return pet.map (p => {
-      return <Pet key={p.id} {...p} familyId={familyId} personId={personId} editPet={editPet}/>
+      return <Pet key={p.id} {...p} familyId={familyId} personId={personId} editPet={editPet} deletePet={deletePet}/>
     })
   }
 
