@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import Pet from './Pet'
+import PetForm from './PetForm'
 
 const Pets = (props) => {
   const {familyId, personId, personName} = props 
@@ -12,10 +13,11 @@ const Pets = (props) => {
 
   const getPets = async () => {
     let res = await axios.get(`/families/${familyId}/people/${personId}/pets`)
-    console.log('look here', res)
-    console.log('look here', res.data)
-    console.log('look here', res.data.pet)
     setPet(res.data.pet)
+  }
+
+  const addPet = (p) => {
+    setPet([p, ...pet])
   }
 
   const renderPets = () => {
@@ -27,6 +29,7 @@ const Pets = (props) => {
   return (
     <div>
       <h2>{personName}'s Pets</h2>
+      {<PetForm familyId={familyId} personId={personId} addPet={addPet}/>}
       {renderPets()}
       <h1>---------------------------</h1>
     </div>
