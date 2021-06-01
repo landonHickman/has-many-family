@@ -25,7 +25,7 @@ const FamilyForm = (props) => {
 
 
   return (
-    <div>
+    <div >
       <form onSubmit={handleSubmit}>
         <p>{id ? 'Edit' : 'Add'} Last Name</p>
         <input value={name} onChange={(e)=>setName(e.target.value)}/>
@@ -34,4 +34,5 @@ const FamilyForm = (props) => {
     </div>
   )
 }
+
 export default FamilyForm
